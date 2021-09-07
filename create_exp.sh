@@ -54,10 +54,20 @@ while (( "$#" )); do
 cat << EOF
 $SCRIPT [-h] [-l -o -a --annotation-file --fastqc-script --spaceranger-script --merge-script --email-user --mem-gb --ncores --time-limit] 
 
-   TODO: Add documentation
+   This script is used to create a folder structure suitable for 
+   10x Visium preprocessing using spaceranger. To run the script 
+   you need a Visium ID, a spaceranger reference genome, area IDs,
+   as well as additional script named FastQC_sbatch.sh and 
+   spaceranger_sbatch.sh.
+
+   In addition, you can include a merge.sh script if you need 
+   to merge multiple lanes. You can also set an email address 
+   which will be added to the FastQC_sbatch.sh and spaceranger.sh 
+   scripts in order to send progress reports.
 
    options:
     -h|--help  Print help messages
+    -o|--output Output path
     -i|--visium-id Visium ID, e.g. V10T03-324
     -a|--areas Area id, e.g. A1,B1,C1,D1
     --reference-genome Path to reference genome prepared with spaceranegr mkref
@@ -65,8 +75,8 @@ $SCRIPT [-h] [-l -o -a --annotation-file --fastqc-script --spaceranger-script --
     --spaceranger-script Path to spaceranger sbatch script
     --merge-script Path to merge script
     --email-user Add email adress to get status report
-    --mem-gb
-    --ncores
+    --mem-gb Memory limit in GBs
+    --ncores Number of cores to be used
     --time-limit
 
 EOF
