@@ -6,9 +6,10 @@ Clone repo:
 
 Navigate to folder and run script:
 
-<code>cd Visium_experiment_prep
- <br>
- sh create_exp.sh --help</code>
+```
+cd Visium_experiment_prep
+sh create_exp.sh --help
+```
 
 
 # Usage
