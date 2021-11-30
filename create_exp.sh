@@ -22,6 +22,10 @@ while (( "$#" )); do
       REF=$2
       shift 2
       ;;
+    --probe-csv)
+      PROBES=$2
+      shift 2
+      ;;
     --fastqc-script)
       FASTQCSCRIPT=$2
       shift 2
@@ -71,6 +75,7 @@ $SCRIPT [-h] [-l -o -a --annotation-file --fastqc-script --spaceranger-script --
     -i|--visium-id Visium ID, e.g. V10T03-324
     -a|--areas Area id, e.g. A1,B1,C1,D1
     --reference-genome Path to reference genome prepared with spaceranegr mkref
+    --probe-csv CSV file with probes (used for FFPE data)
     --fastqc-script Path to FastQC sbatch script
     --spaceranger-script Path to spaceranger sbatch script
     --merge-script Path to merge script
@@ -224,6 +229,10 @@ do
         	then
                 	LINE="REF=${REF}"
         	fi
+		if [[ $LINE =~ "PROBESET=" ]]
+		then
+			LINE="PROBESET=${PROBES}"
+		fi
         	echo $LINE >> $OUTPUTDATA/spaceranger_sbatch.sh
         done < $SPACERANGERSCRIPT
 done
